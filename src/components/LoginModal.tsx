@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { UserSession } from "../types";
 import { loginAPI, verifyMfaAPI } from "../api";
-import { ArrowRight, BadgeCheck, Copy, ShieldCheck, User, X } from "lucide-react";
+import { Copy, ShieldCheck } from "lucide-react";
 
 interface LoginModalProps {
   isOpen: boolean;
@@ -72,44 +72,109 @@ export const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onSuccess, onClo
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center" role="dialog" aria-modal="true" aria-labelledby="login-title">
-      {/* Imagem de fundo Mexicaníssimo */}
       <div className="login-futuro pointer-events-none fixed inset-0" aria-hidden="true" />
-      {/* Formulário flutuante sem card — centralizado sobre o quadro bege da imagem */}
-      <div className="relative w-full max-w-[240px] px-3" style={{ marginTop: "6vh" }}>
-        {onClose && <button type="button" onClick={onClose} className="absolute -top-8 right-2 rounded-lg p-1.5 text-white/80 hover:text-white" aria-label="Fechar login"><X className="h-5 w-5" /></button>}
 
-        {errorMsg && <div className="mb-3 rounded-xl border border-[#fecaca] bg-[#fef2f2]/90 p-3 text-xs font-semibold text-[#991b1b]" role="alert">{errorMsg}</div>}
-        {infoMsg && <div className="mb-3 rounded-xl border border-[#cfe0ff] bg-[#f1f6ff]/90 p-3 text-xs font-semibold text-[#315bc5]" role="status">{infoMsg}</div>}
+      {/* Container transparente centralizado sobre o quadro bege da imagem de fundo */}
+      <div className="relative w-full max-w-sm px-8" style={{ marginTop: "4vh" }}>
+
+        {errorMsg && <div className="mb-4 rounded-lg border border-[#fecaca] bg-[#fef2f2]/90 p-3 text-xs font-semibold text-[#991b1b]" role="alert">{errorMsg}</div>}
+        {infoMsg && <div className="mb-4 rounded-lg border border-[#cfe0ff] bg-[#f1f6ff]/90 p-3 text-xs font-semibold text-[#315bc5]" role="status">{infoMsg}</div>}
 
         {!mfaState ? (
-          <form onSubmit={handleSubmit} className="space-y-3">
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <h1 id="login-title" className="mb-6 text-center text-3xl font-black text-[#3d1a00]" style={{ fontFamily: "'Georgia', serif" }}>
+              Acessar Conta
+            </h1>
+
             <div>
-              <label htmlFor="input-login-username" className="mb-1.5 block text-[10px] font-extrabold uppercase tracking-wider text-[#5c3a1e]">Login ou e-mail</label>
-              <div className="relative">
-                <User className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#8b5e3c]" />
-                <input id="input-login-username" type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="login ou e-mail" className="w-full rounded-xl border border-[#c9a27a]/40 bg-white/70 py-2.5 pl-9 pr-3 text-sm font-medium text-[#3b1f0e] outline-none backdrop-blur-sm transition focus:border-[#b84c1a] focus:bg-white/90 focus:ring-4 focus:ring-[#b84c1a]/20" autoComplete="username" autoFocus />
-              </div>
+              <label htmlFor="input-login-username" className="mb-1.5 block text-sm font-medium text-[#3d1a00]">
+                Nome de Usuário
+              </label>
+              <input
+                id="input-login-username"
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                className="w-full rounded-lg border border-[#c9a27a]/60 bg-[#f5ede0]/70 px-3 py-2.5 text-sm text-[#3d1a00] outline-none transition focus:border-[#b84c1a] focus:bg-[#f5ede0]/90 focus:ring-2 focus:ring-[#b84c1a]/20"
+                autoComplete="username"
+                autoFocus
+              />
             </div>
+
             <div>
-              <label htmlFor="input-login-password" className="mb-1.5 block text-[10px] font-extrabold uppercase tracking-wider text-[#5c3a1e]">Senha de acesso</label>
-              <div className="relative">
-                <BadgeCheck className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#8b5e3c]" />
-                <input id="input-login-password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="••••••••" className="w-full rounded-xl border border-[#c9a27a]/40 bg-white/70 py-2.5 pl-9 pr-3 text-sm font-medium text-[#3b1f0e] outline-none backdrop-blur-sm transition focus:border-[#b84c1a] focus:bg-white/90 focus:ring-4 focus:ring-[#b84c1a]/20" autoComplete="current-password" />
-              </div>
+              <label htmlFor="input-login-password" className="mb-1.5 block text-sm font-medium text-[#3d1a00]">
+                Senha
+              </label>
+              <input
+                id="input-login-password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full rounded-lg border border-[#c9a27a]/60 bg-[#f5ede0]/70 px-3 py-2.5 text-sm text-[#3d1a00] outline-none transition focus:border-[#b84c1a] focus:bg-[#f5ede0]/90 focus:ring-2 focus:ring-[#b84c1a]/20"
+                autoComplete="current-password"
+              />
             </div>
-            <button id="btn-submit-login" type="submit" disabled={isLoading} className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#b84c1a] py-3 text-sm font-bold text-white shadow-lg shadow-[#b84c1a]/40 transition hover:bg-[#973d13] focus:outline-none focus:ring-4 focus:ring-[#b84c1a]/30 disabled:cursor-not-allowed disabled:opacity-60">
-              {isLoading ? <span>Entrando...</span> : <><span>Entrar</span><ArrowRight className="h-4 w-4" /></>}
+
+            <button
+              id="btn-submit-login"
+              type="submit"
+              disabled={isLoading}
+              className="w-full rounded-xl bg-[#b84c1a] py-3.5 text-base font-bold text-white shadow-md transition hover:bg-[#973d13] disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              {isLoading ? "Entrando..." : "Entrar"}
             </button>
+
+            <div className="text-center">
+              <button type="button" className="text-sm text-[#3d1a00] underline underline-offset-2 hover:text-[#b84c1a]">
+                Esqueceu a senha?
+              </button>
+            </div>
           </form>
         ) : (
-          <form onSubmit={handleMfaSubmit} className="space-y-3">
-            {mfaState.mode === "setup" && <div className="rounded-xl border border-[#dbe5f6] bg-white/80 p-4 text-xs text-[#526078] backdrop-blur-sm"><div className="flex items-center gap-2 font-extrabold text-[#152238]"><ShieldCheck className="h-4 w-4 text-[#3c63da]" />Ativação obrigatória do MFA</div><p className="mt-2 leading-5">Adicione esta chave ao Google Authenticator:</p><code className="mt-2 block break-all rounded-lg bg-white p-2 text-[10px] text-[#315bc5]">{mfaState.secret}</code><button type="button" onClick={() => void navigator.clipboard?.writeText(mfaState.otpauth || mfaState.secret || "")} className="mt-2 inline-flex items-center gap-1 font-bold text-[#315bc5]"><Copy className="h-3 w-3" />Copiar chave</button></div>}
+          <form onSubmit={handleMfaSubmit} className="space-y-4">
+            <h1 className="mb-6 text-center text-2xl font-black text-[#3d1a00]" style={{ fontFamily: "'Georgia', serif" }}>
+              Verificação em Duas Etapas
+            </h1>
+
+            {mfaState.mode === "setup" && (
+              <div className="rounded-lg border border-[#c9a27a]/40 bg-[#f5ede0]/80 p-4 text-xs text-[#5c3a1e]">
+                <div className="flex items-center gap-2 font-bold text-[#3d1a00]">
+                  <ShieldCheck className="h-4 w-4" />Ativação obrigatória do MFA
+                </div>
+                <p className="mt-2 leading-5">Adicione esta chave ao Google Authenticator:</p>
+                <code className="mt-2 block break-all rounded bg-white/60 p-2 text-[10px] text-[#3d1a00]">{mfaState.secret}</code>
+                <button type="button" onClick={() => void navigator.clipboard?.writeText(mfaState.otpauth || mfaState.secret || "")} className="mt-2 inline-flex items-center gap-1 font-bold text-[#b84c1a]">
+                  <Copy className="h-3 w-3" />Copiar chave
+                </button>
+              </div>
+            )}
+
             <div>
-              <label htmlFor="input-mfa-code" className="mb-1.5 block text-[10px] font-extrabold uppercase tracking-wider text-[#5c3a1e]">Código do autenticador</label>
-              <input id="input-mfa-code" inputMode="numeric" pattern="[0-9]{6}" maxLength={6} value={mfaCode} onChange={(e) => setMfaCode(e.target.value.replace(/\D/g, "").slice(0, 6))} placeholder="000000" className="w-full rounded-xl border border-[#c9a27a]/40 bg-white/70 px-3 py-3 text-center text-xl font-extrabold tracking-[0.4em] text-[#3b1f0e] outline-none backdrop-blur-sm focus:border-[#b84c1a]" autoFocus />
+              <label htmlFor="input-mfa-code" className="mb-1.5 block text-sm font-medium text-[#3d1a00]">
+                Código do autenticador
+              </label>
+              <input
+                id="input-mfa-code"
+                inputMode="numeric"
+                pattern="[0-9]{6}"
+                maxLength={6}
+                value={mfaCode}
+                onChange={(e) => setMfaCode(e.target.value.replace(/\D/g, "").slice(0, 6))}
+                placeholder="000000"
+                className="w-full rounded-lg border border-[#c9a27a]/60 bg-[#f5ede0]/70 px-3 py-3 text-center text-xl font-extrabold tracking-[0.4em] text-[#3d1a00] outline-none focus:border-[#b84c1a]"
+                autoFocus
+              />
             </div>
-            <button type="submit" disabled={isLoading || mfaCode.length !== 6} className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#3c63da] py-3 text-sm font-bold text-white shadow-lg disabled:cursor-not-allowed disabled:opacity-60">{isLoading ? "Validando..." : "Confirmar acesso seguro"}<ShieldCheck className="h-4 w-4" /></button>
-            <button type="button" onClick={() => { setMfaState(null); setMfaCode(""); setErrorMsg(""); setInfoMsg(""); }} className="w-full text-xs font-bold text-[#5c3a1e] hover:text-[#3b1f0e]">Voltar ao login</button>
+
+            <button type="submit" disabled={isLoading || mfaCode.length !== 6} className="w-full rounded-xl bg-[#b84c1a] py-3.5 text-base font-bold text-white shadow-md disabled:cursor-not-allowed disabled:opacity-60">
+              {isLoading ? "Validando..." : "Confirmar acesso"}
+            </button>
+
+            <div className="text-center">
+              <button type="button" onClick={() => { setMfaState(null); setMfaCode(""); setErrorMsg(""); setInfoMsg(""); }} className="text-sm text-[#3d1a00] underline underline-offset-2">
+                Voltar ao login
+              </button>
+            </div>
           </form>
         )}
       </div>
