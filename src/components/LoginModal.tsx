@@ -77,9 +77,8 @@ export const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onSuccess, onClo
       <div className="relative w-full max-w-sm overflow-hidden rounded-3xl border border-white/30 sm:my-auto bg-white/95 shadow-[0_32px_80px_rgba(80,20,0,0.45)] backdrop-blur">
         <div className="relative p-6 sm:p-8">
           {onClose && <button type="button" onClick={onClose} className="absolute right-4 top-4 rounded-lg p-1.5 text-[#69778c] transition hover:bg-[#f4f7fb] hover:text-[#152238]" aria-label="Fechar login"><X className="h-5 w-5" /></button>}
-          <div className="mb-6 flex flex-col items-center gap-3">
-            <img src="/logo-mexicanissimo.png" alt="Mexicaníssimo" className="h-14 w-auto object-contain" />
-            <h1 id="login-title" className="text-sm font-bold tracking-wide text-[#7c3a0a]">Gestão do Restaurante</h1>
+          <div className="mb-6 flex flex-col items-center">
+            <img src="/logo-mexicanissimo.png" alt="Mexicaníssimo" className="h-16 w-auto object-contain" />
           </div>
 
           {errorMsg && <div className="mb-4 rounded-xl border border-[#fecaca] bg-[#fef2f2] p-3 text-xs font-semibold text-[#991b1b]" role="alert">{errorMsg}</div>}
