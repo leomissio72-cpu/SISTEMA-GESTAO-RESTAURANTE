@@ -74,8 +74,8 @@ export const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onSuccess, onClo
     <div className="fixed inset-0 z-50 flex items-center justify-center" role="dialog" aria-modal="true" aria-labelledby="login-title">
       {/* Imagem de fundo Mexicaníssimo */}
       <div className="login-futuro pointer-events-none fixed inset-0" aria-hidden="true" />
-      {/* Formulário flutuante sem card — posicionado sobre a área bege da imagem */}
-      <div className="relative w-full max-w-xs px-2" style={{ marginTop: "8vh" }}>
+      {/* Formulário flutuante sem card — centralizado sobre o quadro bege da imagem */}
+      <div className="relative w-full max-w-[240px] px-3" style={{ marginTop: "6vh" }}>
         {onClose && <button type="button" onClick={onClose} className="absolute -top-8 right-2 rounded-lg p-1.5 text-white/80 hover:text-white" aria-label="Fechar login"><X className="h-5 w-5" /></button>}
 
         {errorMsg && <div className="mb-3 rounded-xl border border-[#fecaca] bg-[#fef2f2]/90 p-3 text-xs font-semibold text-[#991b1b]" role="alert">{errorMsg}</div>}
