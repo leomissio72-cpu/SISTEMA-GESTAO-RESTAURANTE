@@ -163,10 +163,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
       <div className="flex items-center justify-between pb-4 border-b border-[#e2e8f0]">
         {!isCollapsed && (
           <div className="flex flex-col gap-0.5">
-            <img src="/logo-mexicanissimo.png" alt="Mexicaníssimo" className="h-9 w-auto object-contain object-left" />
-            <p className="text-[10px] text-[#64748b] truncate">
-              Operação do restaurante
-            </p>
+            <img src="/logo-m.png" alt="Mexicaníssimo" className="h-10 w-auto object-contain" />
           </div>
         )}
 
@@ -197,9 +194,9 @@ export const Sidebar: React.FC<SidebarProps> = ({
           <button
             onClick={() => onSelectScreen("home")}
             title="Gestão de Restaurantes"
-            className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#1b2d4b] text-[#3c63da] border border-[#3c63da]/30 hover:bg-[#273b60]"
+            className="flex h-9 w-9 items-center justify-center rounded-lg hover:bg-[#f1f5f9]"
           >
-            <Store className="h-4 w-4" />
+            <img src="/logo-m.png" alt="M" className="h-7 w-7 object-contain" />
           </button>
         </div>
       )}

@@ -78,7 +78,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onSuccess, onClo
         <div className="relative p-6 sm:p-8">
           {onClose && <button type="button" onClick={onClose} className="absolute right-4 top-4 rounded-lg p-1.5 text-[#69778c] transition hover:bg-[#f4f7fb] hover:text-[#152238]" aria-label="Fechar login"><X className="h-5 w-5" /></button>}
           <div className="mb-6 flex flex-col items-center">
-            <img src="/logo-mexicanissimo.png" alt="Mexicaníssimo" className="h-16 w-auto object-contain" />
+            <img src="/logo-m.png" alt="Mexicaníssimo" className="h-20 w-auto object-contain" />
           </div>
 
           {errorMsg && <div className="mb-4 rounded-xl border border-[#fecaca] bg-[#fef2f2] p-3 text-xs font-semibold text-[#991b1b]" role="alert">{errorMsg}</div>}

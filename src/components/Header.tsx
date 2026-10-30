@@ -105,7 +105,7 @@ export const Header: React.FC<HeaderProps> = ({
 
         {/* Logo + Título da página */}
         <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0 min-w-0">
-          <img src="/logo-mexicanissimo.png" alt="Mexicaníssimo" className="hidden sm:block h-8 w-auto object-contain" />
+          <img src="/logo-m.png" alt="Mexicaníssimo" className="hidden sm:block h-9 w-auto object-contain" />
           <h1 className="text-sm sm:text-base font-extrabold text-[#152238] tracking-tight whitespace-nowrap">
             {screenTitles[currentScreen] || "Mexicaníssimo"}
           </h1>

@@ -265,16 +265,6 @@ var initialConfigs = [
     modifiedBy: "Sistema"
   },
   {
-    key: "two_factor_auth_required",
-    name: "Exigir 2FA para Administradores",
-    value: "true",
-    type: "boolean",
-    category: "Seguran\xE7a",
-    description: "Obrigatoriedade de autentica\xE7\xE3o de dois fatores no painel administrativo",
-    lastModified: (/* @__PURE__ */ new Date()).toISOString(),
-    modifiedBy: "Sistema"
-  },
-  {
     key: "auto_conciliation_threshold",
     name: "Toler\xE2ncia de Concilia\xE7\xE3o Autom\xE1tica (R$)",
     value: "0.05",
@@ -944,16 +934,6 @@ var defaultConfigs = [
     modifiedBy: "Sistema"
   },
   {
-    key: "two_factor_auth_required",
-    name: "Exigir 2FA para Administradores",
-    value: "true",
-    type: "boolean",
-    category: "Seguran\xE7a",
-    description: "Obrigatoriedade de autentica\xE7\xE3o de dois fatores no painel administrativo",
-    lastModified: (/* @__PURE__ */ new Date()).toISOString(),
-    modifiedBy: "Sistema"
-  },
-  {
     key: "auto_conciliation_threshold",
     name: "Toler\xE2ncia de Concilia\xE7\xE3o Autom\xE1tica (R$)",
     value: "0.05",
@@ -1331,9 +1311,7 @@ routeBoth("post", "/api/auth/login", async (req, res) => {
   loginAttempts.delete(attemptKey);
   const encryptedMfaSecret = db.mfaSecrets?.[user.id];
   const storedMfaSecret = encryptedMfaSecret ? decryptSecret(encryptedMfaSecret) : null;
-  const requireConfiguredMfa = db.configs.some((config) => config.key === "two_factor_auth_required" && String(config.value).toLowerCase() === "true");
-  const profile = String(user.perfil || "").toLowerCase();
-  const mfaRequired = Boolean(storedMfaSecret || requireConfiguredMfa && profile === "admin" && storedMfaSecret);
+  const mfaRequired = Boolean(storedMfaSecret);
   if (mfaRequired) {
     const challengeToken = createMfaChallenge(user.id, storedMfaSecret ? "mfa-login" : "mfa-setup");
     const response = { user: safeUser(user), challengeToken, mfaRequired: Boolean(storedMfaSecret), mfaSetupRequired: !storedMfaSecret };
