@@ -506,17 +506,24 @@ export const App: React.FC = () => {
 
   if (isLoading || !serverState) {
     return (
-      <div className="flex h-screen w-screen flex-col items-center justify-center bg-[#10192c] text-white">
-        <div className="flex items-center gap-3">
-          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#3c63da] text-white shadow-lg">
-            <Cloud className="h-6 w-6 animate-pulse" />
-          </div>
-          <div>
-            <h1 className="text-xl font-extrabold tracking-tight">Gestão de Restaurantes</h1>
-            <p className="max-w-md text-xs text-[#8ea1be]">{loadError || "Conectando à base central..."}</p>
-            {loadError && <button type="button" onClick={() => void loadState()} className="mt-4 rounded-xl bg-[#3c63da] px-4 py-2 text-xs font-bold text-white">Tentar novamente</button>}
-          </div>
+      <div className="flex h-screen w-screen flex-col items-center justify-center bg-[#b84c1a]">
+        <div className="flex flex-col items-center gap-6">
+          <img
+            src="/logo-m.png"
+            alt="Mexicaníssimo"
+            className="h-28 w-28 object-contain drop-shadow-2xl"
+            style={{ animation: "pulse 1.6s ease-in-out infinite" }}
+          />
+          <p className="text-sm font-semibold tracking-widest text-white/80 uppercase">
+            {loadError || "Carregando..."}
+          </p>
+          {loadError && (
+            <button type="button" onClick={() => void loadState()} className="rounded-xl bg-white/20 px-5 py-2 text-sm font-bold text-white hover:bg-white/30">
+              Tentar novamente
+            </button>
+          )}
         </div>
+        <style>{`@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.7;transform:scale(.93)} }`}</style>
       </div>
     );
   }
