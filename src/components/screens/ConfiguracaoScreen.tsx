@@ -138,9 +138,9 @@ export const ConfiguracaoScreen: React.FC<ConfiguracaoScreenProps> = ({
 
   // 0. Preferências State
   const defaultSettings: SystemSettings = {
-    appName: "Franchise Hub Pro",
-    companyName: "Franqueadora Matriz Brasil S/A",
-    cnpjMatriz: "12.345.678/0001-90",
+    appName: "Mexicaníssimo Gestão",
+    companyName: "Mexicaníssimo Restaurante",
+    cnpjMatriz: "",
     currency: "BRL",
     autoSync: true,
     syncInterval: 30,

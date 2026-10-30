@@ -1179,9 +1179,9 @@ function getFullState(database) {
     intercompanyRules: database.intercompanyRules || [],
     intercompanySeedVersion: database.intercompanySeedVersion || 0,
     systemSettings: database.systemSettings || {
-      appName: "Gest\xE3o de Franquias",
-      companyName: "Gest\xE3o de Franquias S.A.",
-      cnpjMatriz: "12.345.678/0001-90"
+      appName: "Mexicanissimo Gestão",
+      companyName: "Mexicanissimo Restaurante",
+      cnpjMatriz: ""
     },
     lastUpdated: database.lastUpdated,
     ...database.operationalClearedAt ? { operationalClearedAt: database.operationalClearedAt, operationalClearToken: database.operationalClearToken } : {},
