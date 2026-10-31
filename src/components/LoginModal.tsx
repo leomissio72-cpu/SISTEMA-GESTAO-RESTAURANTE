@@ -71,18 +71,18 @@ export const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onSuccess, onClo
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center" role="dialog" aria-modal="true" aria-labelledby="login-title">
+    <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto overflow-x-hidden" role="dialog" aria-modal="true" aria-labelledby="login-title">
       <div className="login-futuro pointer-events-none fixed inset-0" aria-hidden="true" />
 
       {/* Container transparente centralizado sobre o quadro bege da imagem de fundo */}
-      <div className="relative w-full max-w-sm px-8" style={{ marginTop: "4vh" }}>
+      <div className="relative my-auto box-border w-full max-w-sm px-6 py-6 sm:px-8" style={{ maxHeight: "100dvh" }}>
 
         {errorMsg && <div className="mb-4 rounded-lg border border-[#fecaca] bg-[#fef2f2]/90 p-3 text-xs font-semibold text-[#991b1b]" role="alert">{errorMsg}</div>}
         {infoMsg && <div className="mb-4 rounded-lg border border-[#cfe0ff] bg-[#f1f6ff]/90 p-3 text-xs font-semibold text-[#315bc5]" role="status">{infoMsg}</div>}
 
         {!mfaState ? (
           <form onSubmit={handleSubmit} className="space-y-4">
-            <h1 id="login-title" className="mb-6 text-center text-3xl font-black text-[#3d1a00]" style={{ fontFamily: "'Georgia', serif" }}>
+            <h1 id="login-title" className="mb-4 text-center text-2xl sm:mb-6 sm:text-3xl font-black text-[#3d1a00]" style={{ fontFamily: "'Georgia', serif" }}>
               Acessar Conta
             </h1>
 
