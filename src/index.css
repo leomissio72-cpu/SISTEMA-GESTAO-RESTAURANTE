@@ -411,8 +411,10 @@ html.theme-dark .leaflet-bar a { background: #17243a !important; color: #e5edf8 
 
 /* Fundo da tela de login: Mexicaníssimo */
 .login-futuro {
-  background: #b84c1a url('/login-bg.webp') center center / cover no-repeat;
+  /* Celular (retrato): imagem inteira no topo, sem cortar as laterais */
+  background: #f7eedf url('/login-bg.webp') center top / 100% auto no-repeat;
 }
-@media (min-width: 768px) {
-  .login-futuro { background-image: url('/login-bg.webp'); background-position: center center; background-size: cover; }
+@media (min-aspect-ratio: 1024/664) {
+  .login-futuro { background: #b84c1a url('/login-bg.webp') center center / cover no-repeat; }
 }
+
