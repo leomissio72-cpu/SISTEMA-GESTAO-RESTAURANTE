@@ -75,7 +75,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onSuccess, onClo
       <div className="login-futuro pointer-events-none fixed inset-0" aria-hidden="true" />
 
       {/* Container transparente centralizado sobre o quadro bege da imagem de fundo */}
-      <div className="relative my-auto box-border w-full pt-[calc(65vw+1rem)] [@media(min-aspect-ratio:1024/664)]:pt-6 max-w-sm px-6 pb-6 sm:px-8">
+      <div className="relative box-border w-full self-start pt-[calc(65vw+1.5rem)] [@media(min-aspect-ratio:1024/664)]:my-auto [@media(min-aspect-ratio:1024/664)]:self-center [@media(min-aspect-ratio:1024/664)]:pt-6 max-w-sm px-6 pb-6 sm:px-8">
 
         {errorMsg && <div className="mb-4 rounded-lg border border-[#fecaca] bg-[#fef2f2]/90 p-3 text-xs font-semibold text-[#991b1b]" role="alert">{errorMsg}</div>}
         {infoMsg && <div className="mb-4 rounded-lg border border-[#cfe0ff] bg-[#f1f6ff]/90 p-3 text-xs font-semibold text-[#315bc5]" role="status">{infoMsg}</div>}
